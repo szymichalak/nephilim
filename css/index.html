@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS buttons</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+        :root {
+            --button-blue-color: #3787ff;
+            --button-gray-color-light: #b8b8b8;
+            --button-gray-color-dark: #686868;
+        }
+        hr {
+            border: 0.1em dashed #00fff0;
+            border-style: none none dashed;
+            color: #fff;
+            background-color: #fff;
+            margin: 0;
+        }
+
+        .buttons {
+            margin-bottom: -0.05em;
+            display: flex;
+        }
+        .button__wrapper {
+            display: inline-block;
+            height: 3em;
+            position: relative;
+            width: 5em;
+            margin: auto;
+        }
+
+        .c-button {
+            color: white;
+            background-color: var(--button-blue-color);
+            border: none;
+            border-radius: 4px;
+            padding: 0.5em 1em;
+
+            position: absolute;
+            bottom: 0;
+            left: 0.5em;
+            right: 0.5em;
+            width: 5em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .c-button:hover:not([disabled]){
+            margin-bottom: 0.2rem;
+            box-shadow: 0 0.25em 0.5em -0.3em rgba(0,0,0,0.8);
+        }
+        .c-button:focus:not([disabled]){
+            margin-bottom: 0.2rem;
+            box-shadow: 0 0.25em 0.5em -0.3em rgba(0,0,0,0.8);
+        }
+        .c-button:active:not([disabled]){
+            margin-bottom: 0.1rem;
+            box-shadow: 0 0.1em 0.5em -0.3em rgba(0,0,0,0.8);
+        }
+        .c-button:disabled{
+            background-color: var(--button-gray-color-light);
+            color: var(--button-gray-color-dark);
+        }
+
+        .c-button.c-button--outline {
+            color: var(--button-blue-color);
+            background-color: white;
+            border: 0.05rem solid var(--button-blue-color);
+        }
+        .c-button.c-button--outline:disabled {
+            color: var(--button-gray-color-light);
+            background-color: white;
+            border: 0.05rem solid var(--button-gray-color-light);
+        }
+
+        .c-button.c-button--icon {
+            padding: 0;
+            width: 1.1em;
+            height: 1.1em;
+            font-size: 25px;
+        }
+
+        .c-attention {
+            position: absolute;
+            top: -0.5em;
+            right: -0.5em;
+            height: 0.75em;
+            width: 0.75em;
+            background-color: red;
+            border-radius: 50%;
+            box-shadow: 0 0.15em 0.7em 0.1em rgba(0,0,0,0.6);
+        }
+        .c-button--icon .c-attention {
+            font-size: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="block">
+        <div class="buttons">
+            <div class="button__wrapper">
+                <button class="c-button">
+                    Bazyl
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button">
+                    Bazyl
+                    <span class="c-attention"></span>
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button" disabled>
+                    Bazyl
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="block">
+        <div class="buttons">
+            <div class="button__wrapper">
+                <button class="c-button c-button--outline">
+                    Bazyl
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--outline">
+                    Bazyl
+                    <span class="c-attention"></span>
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--outline" disabled>
+                    Bazyl
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="block">
+        <div class="buttons">
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon">
+                    +
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon">
+                    +
+                    <span class="c-attention"></span>
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon" disabled>
+                    +
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="block">
+        <div class="buttons">
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon c-button--outline">
+                    +
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon c-button--outline">
+                    +
+                    <span class="c-attention"></span>
+                </button>
+            </div>
+            <div class="button__wrapper">
+                <button class="c-button c-button--icon c-button--outline" disabled>
+                    +
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+</body>
+</html>
