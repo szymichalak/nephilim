@@ -3,186 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <title>CSS buttons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
         body {
             margin: 0;
         }
         :root {
-            --button-blue-color: #3787ff;
-            --button-gray-color-light: #b8b8b8;
-            --button-gray-color-dark: #686868;
-        }
-        hr {
-            border: 0.1em dashed #00fff0;
-            border-style: none none dashed;
-            color: #fff;
-            background-color: #fff;
-            margin: 0;
+            /* colors */            
+            --brand-01-color: #3787FF;
+            --guide-line-color: #00FFF0;
+            --ui-color-01: #FFFFFF;
+            --ui-color-02: #000000;
+            --button-disabled-color-01: #CCCCCC;
+            --button-disabled-color-02: #999999;
+            --alert-color-01: #C50000;
+
+            /* elevations */
+            --elevation-shadow-01: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.3);
+            --elevation-shadow-02: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+
+            /* pixel sizes */
+            --hair-size: 1px;
+            font-size: 16px;        
         }
 
-        .buttons {
-            margin-bottom: -0.05em;
-            display: flex;
-        }
-        .button__wrapper {
-            display: inline-block;
-            height: 3em;
-            position: relative;
-            width: 5em;
-            margin: auto;
+        /* font awesome */
+        .fa {
+            height: 1rem;
+            width: 1rem;
         }
 
-        .c-button {
-            color: white;
-            background-color: var(--button-blue-color);
-            border: none;
-            border-radius: 4px;
-            padding: 0.5em 1em;
-
-            position: absolute;
-            bottom: 0;
-            left: 0.5em;
-            right: 0.5em;
-            width: 5em;
+        /* objects */
+        .o-main {
+            width: 64rem;
+            max-width: 100%;
+            box-sizing: border-box;
             margin-left: auto;
             margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+        .o-layout {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .o-layout--centered {
+            text-align: center;
+        }
+        .o-layout__item--4 {
+            width: 33.333%;
+        }
+        .o-layout__item {
+            display: inline-block;
+            box-sizing: border-box;
         }
 
-        .c-button:hover:not([disabled]){
-            margin-bottom: 0.2rem;
-            box-shadow: 0 0.25em 0.5em -0.3em rgba(0,0,0,0.8);
+        /* components */
+        .c-button {
+            color: var(--ui-color-01);
+            background-color: var(--brand-01-color);
+            border: var(--hair-size) solid var(--brand-01-color);
+            border-radius: 4px;
+            padding: 0.5em 1em;
+            position: relative;
+            transition: 0.2s ease-in-out;
         }
-        .c-button:focus:not([disabled]){
-            margin-bottom: 0.2rem;
-            box-shadow: 0 0.25em 0.5em -0.3em rgba(0,0,0,0.8);
+        .c-guideline {
+            border: 0.1em dashed var(--guide-line-color);
+            border-style: none none dashed;
+            color: var(--ui-color-01);;
+            background-color: var(--ui-color-01);;
+            margin: calc(var(--hair-size) * (-1)) 0 0 0;
         }
-        .c-button:active:not([disabled]){
-            margin-bottom: 0.1rem;
-            box-shadow: 0 0.1em 0.5em -0.3em rgba(0,0,0,0.8);
-        }
-        .c-button:disabled{
-            background-color: var(--button-gray-color-light);
-            color: var(--button-gray-color-dark);
-        }
-
-        .c-button.c-button--outline {
-            color: var(--button-blue-color);
-            background-color: white;
-            border: 0.05rem solid var(--button-blue-color);
-        }
-        .c-button.c-button--outline:disabled {
-            color: var(--button-gray-color-light);
-            background-color: white;
-            border: 0.05rem solid var(--button-gray-color-light);
-        }
-
-        .c-button.c-button--icon {
-            padding: 0;
-            width: 1.1em;
-            height: 1.1em;
-            font-size: 25px;
-        }
-
         .c-attention {
             position: absolute;
-            top: -0.5em;
-            right: -0.5em;
-            height: 0.75em;
-            width: 0.75em;
-            background-color: red;
+            top: -0.25rem;
+            right: -0.25rem;
+            height: 0.5rem;
+            width: 0.5rem;
+            background-color: var(--alert-color-01);
             border-radius: 50%;
-            box-shadow: 0 0.15em 0.7em 0.1em rgba(0,0,0,0.6);
+            box-shadow: var(--elevation-shadow-01);
         }
-        .c-button--icon .c-attention {
-            font-size: 0.5em;
+
+
+        /* button actions */
+        .c-button:hover{
+            box-shadow: var(--elevation-shadow-02);
+            transform: translateY(-0.25rem);
+        }
+        .c-button:focus{
+            box-shadow: var(--elevation-shadow-02);
+            transform: translateY(-0.25rem);
+        }
+        .c-button:active{
+            box-shadow: var(--elevation-shadow-01);
+            transform: translateY(-0.125rem);
+        }
+        .c-button:disabled{
+            background-color: var(--button-disabled-color-01);
+            color: var(--button-disabled-color-02);
+            border: var(--hair-size) solid var(--button-disabled-color-01);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* outlines */
+        .c-button--outline {
+            color: var(--brand-01-color);
+            background-color: var(--ui-color-01);
+            border: var(--hair-size) solid var(--brand-01-color);
+        }
+        .c-button--outline:disabled {
+            color: var(--button-disabled-color-02);
+            background-color: var(--ui-color-01);
+            border: var(--hair-size) solid var(--button-disabled-color-02);
+        }
+
+        /* icon */
+        .c-button--icon {
+            padding: 0.5rem 0.5rem;
+        }
+
+        /* utils */
+        .u-margin-top--m {
+            margin-top: 1rem!important
         }
     </style>
 </head>
 <body>
-    <div class="block">
-        <div class="buttons">
-            <div class="button__wrapper">
+    <div class="o-main u-margin-top--m">
+        <div class="o-layout o-layout--centered">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button">
                     Bazyl
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button">
                     Bazyl
                     <span class="c-attention"></span>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button" disabled>
                     Bazyl
                 </button>
             </div>
         </div>
-        <hr>
+        <hr class="c-guideline">
     </div>
-    <div class="block">
-        <div class="buttons">
-            <div class="button__wrapper">
+    <div class="o-main u-margin-top--m">
+        <div class="o-layout o-layout--centered">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--outline">
                     Bazyl
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--outline">
                     Bazyl
                     <span class="c-attention"></span>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--outline" disabled>
                     Bazyl
                 </button>
             </div>
         </div>
-        <hr>
+        <hr class="c-guideline">
     </div>
-    <div class="block">
-        <div class="buttons">
-            <div class="button__wrapper">
+    <div class="o-main u-margin-top--m">
+        <div class="o-layout o-layout--centered">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon">
-                    +
+                    <i class="fa fa-plus"></i>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon">
-                    +
+                    <i class="fa fa-plus"></i>
                     <span class="c-attention"></span>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon" disabled>
-                    +
+                    <i class="fa fa-plus"></i>
                 </button>
             </div>
         </div>
-        <hr>
+        <hr class="c-guideline">
     </div>
-    <div class="block">
-        <div class="buttons">
-            <div class="button__wrapper">
+    <div class="o-main u-margin-top--m">
+        <div class="o-layout o-layout--centered">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon c-button--outline">
-                    +
+                    <i class="fa fa-plus"></i>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon c-button--outline">
-                    +
+                    <i class="fa fa-plus"></i>
                     <span class="c-attention"></span>
                 </button>
             </div>
-            <div class="button__wrapper">
+            <div class="o-layout__item o-layout__item--4">
                 <button class="c-button c-button--icon c-button--outline" disabled>
-                    +
+                    <i class="fa fa-plus"></i>
                 </button>
             </div>
         </div>
-        <hr>
+        <hr class="c-guideline">
     </div>
 </body>
 </html>
