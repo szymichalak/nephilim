@@ -11,21 +11,22 @@
         }
         :root {
             /* colors */            
-            --brand-01-color: #3787FF;
-            --guide-line-color: #00FFF0;
-            --ui-color-01: #FFFFFF;
-            --ui-color-02: #000000;
-            --ui-color-03: #CCCCCC;
-            --ui-color-04: #999999;
-            --ui-color-05: #666666;
-            --alert-color-01: #C50000;
+            --color-brand-01: #3787FF;
+            --color-guideline: #00FFF0;
+            --color-ui-01: #FFFFFF;
+            --color-ui-02: #EFEFEF;
+            --color-ui-03: #CCCCCC;
+            --color-ui-04: #999999;
+            --color-ui-05: #666666;
+            --color-ui-06: #333333;
+            --color-alert-01: #C50000;
 
             /* elevations */
             --elevation-shadow-01: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.3);
             --elevation-shadow-02: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
             /* pixel sizes */
-            --hair-size: 1px;
+            --size-hair: 1px;
             font-size: 16px;
             font-family: Arial, Helvetica, sans-serif;    
         }
@@ -85,20 +86,20 @@
 
         /* components */
         .c-button {
-            color: var(--ui-color-01);
-            background-color: var(--brand-01-color);
-            border: var(--hair-size) solid var(--brand-01-color);
+            color: var(--color-ui-01);
+            background-color: var(--color-brand-01);
+            border: var(--size-hair) solid var(--color-brand-01);
             border-radius: 4px;
             padding: 0.5em 1em;
             position: relative;
             transition: 0.2s ease-in-out;
         }
         .c-guideline {
-            border: 0.1em dashed var(--guide-line-color);
+            border: 0.1em dashed var(--color-guideline);
             border-style: none none dashed;
-            color: var(--ui-color-01);;
-            background-color: var(--ui-color-01);;
-            margin: calc(var(--hair-size) * (-1)) 0 0 0;
+            color: var(--color-ui-01);;
+            background-color: var(--color-ui-01);;
+            margin: calc(var(--size-hair) * (-1)) 0 0 0;
         }
         .c-attention {
             position: absolute;
@@ -106,47 +107,90 @@
             right: -0.25rem;
             height: 0.5rem;
             width: 0.5rem;
-            background-color: var(--alert-color-01);
+            background-color: var(--color-alert-01);
             border-radius: 50%;
             box-shadow: var(--elevation-shadow-01);
         }
         .c-input {
-            background: var(--ui-color-01);
-            border: var(--hair-size) solid var(--ui-color-04);
+            background: var(--color-ui-01);
+            border: var(--size-hair) solid var(--color-ui-04);
             box-sizing: border-box;
             border-radius: 0.25rem;
             width: 100%;
             height: 2rem;
         }
+        textarea.c-input {
+            min-height: 10rem;
+        }
         .c-label {
-            position: static;
             height: 1rem;
-            left: 0;
-            top: 0;
             margin: 0;
-            font-style: normal;
             font-weight: 600;
             font-size: 0.75rem;
             line-height: 1rem;
-            color: var(--ui-color-05);
+            color: var(--color-ui-05);
         }
-        .c-radio-button {
+        .c-radio-button-input {
+            display: none;
+        }
+        .c-checkbox-input {
+            display: none;
+        }
+        .c-section {
+            background-color: var(--color-ui-02);
+        }
+        .c-section--brand-01 {
+            --color-ui-02: var(--color-brand-01);
+            --color-ui-05: var(--color-ui-01);
+            --color-ui-06: var(--color-ui-01);
+        }
+        .c-radio-box {
             height: 1rem;
             width: 1rem;
-            margin: 0;
-        }
-        .c-checkbox {
-            position: static;
-            width: 1rem;
-            height: 1rem;
-            left: 0;
-            top: 0;
-            margin: 0;
-            padding: 0;
-            background: var(--ui-color-01);
-            border: var(--hair-size) solid var(--ui-color-04);
+            border: var(--size-hair) solid var(--color-ui-04);
+            border-radius: 50%;
             box-sizing: border-box;
+            background-color: var(--color-ui-01);
+        }
+        .c-checkbox-box {
+            height: 1rem;
+            width: 1rem;
             border-radius: 0.25rem;
+            border: var(--size-hair) solid var(--color-ui-04);
+            background-color: var(--color-ui-01);
+            box-sizing: border-box;
+        }
+        .c-radio-button .c-label {
+            display: flex;
+            font-size: 1rem;
+            color: var(--color-ui-06);
+            font-weight: 600;
+        }
+        .c-checkbox .c-label {
+            display: flex;
+            font-size: 1rem;
+            color: var(--color-ui-06);
+            font-weight: 600;
+        }
+
+        .c-label input:checked + .c-radio-box::before {
+            content: "\f111";
+            font-size: 0.5rem;
+            font-family: "Font Awesome 5 Free";
+            position: relative;
+            left: 3px;
+            top: -3px;
+            color: var(--color-brand-01);
+        }
+
+        .c-label input:checked + .c-checkbox-box::before {
+            content: "\2713";
+            font-size: 0.5rem;
+            font-family: "Font Awesome 5 Free";
+            position: relative;
+            left: 3px;
+            top: -3px;
+            color: var(--color-brand-01);
         }
 
 
@@ -164,23 +208,23 @@
             transform: translateY(-0.125rem);
         }
         .c-button:disabled{
-            background-color: var(--ui-color-03);
-            color: var(--ui-color-04);
-            border: var(--hair-size) solid var(--ui-color-03);
+            background-color: var(--color-ui-03);
+            color: var(--color-ui-04);
+            border: var(--size-hair) solid var(--color-ui-03);
             transform: none;
             box-shadow: none;
         }
 
         /* outlines */
         .c-button--outline {
-            color: var(--brand-01-color);
-            background-color: var(--ui-color-01);
-            border: var(--hair-size) solid var(--brand-01-color);
+            color: var(--color-brand-01);
+            background-color: var(--color-ui-01);
+            border: var(--size-hair) solid var(--color-brand-01);
         }
         .c-button--outline:disabled {
-            color: var(--ui-color-04);
-            background-color: var(--ui-color-01);
-            border: var(--hair-size) solid var(--ui-color-04);
+            color: var(--color-ui-04);
+            background-color: var(--color-ui-01);
+            border: var(--size-hair) solid var(--color-ui-04);
         }
 
         /* icon */
@@ -195,8 +239,8 @@
         .u-margin-top--m {
             margin-top: 1rem!important
         }
-        .u-margin-bottom--m {
-            margin-bottom: 1rem!important
+        .u-margin-right--xxs {
+            margin-right: 0.25rem!important
         }
     </style>
 </head>
@@ -288,62 +332,172 @@
 
     <br>
     <br>
-    <form class="o-main">
-        <div class="o-layout o-layout--spaced">
-            <div class="o-layout__item o-layout__item--6">
-                <label class="c-label">First Name</label>
-                <input class="c-input u-margin-top--xxs">
-            </div>
-            <div class="o-layout__item o-layout__item--6">
-                <label class="c-label">Last Name</label>
-                <input class="c-input u-margin-top--xxs">
-            </div>
-            <div class="o-layout__item o-layout__item--6">
-                <label class="c-label">E-mail</label>
-                <input class="c-input u-margin-top--xxs">
-            </div>
-            <div class="o-layout__item o-layout__item--6">
-                <label class="c-label">Phone</label>
-                <input class="c-input u-margin-top--xxs">
-            </div>
-            <div class="o-layout__item o-layout__item--12">
-                <label class="c-label">Subject</label>
-                <input class="c-input u-margin-top--xxs">
-            </div>
-            <div class="o-layout__item">
-                <input type="radio" class="c-radio-button" name="gender">
-                <label class="c-label">Female</label>
-            </div>
-            <div class="o-layout__item">
-                <input type="radio" class="c-radio-button" name="gender">
-                <label class="c-label">Male</label>
-            </div>
-            <div class="o-layout__item o-layout__item--12">
-                <div class="o-layout o-layout--spaced">
-                    <div class="o-layout__item">
-                        <input class="c-checkbox" type="checkbox" id="checkbox">
+    <div class="c-section">
+        <form class="o-main">
+            <div class="o-layout o-layout--spaced">
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        First Name
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        Last Name
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        E-mail
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        Phone
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--12">
+                    <label class="c-label">
+                        Subject
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--12">
+                    <label class="c-label">
+                        Question
+                        <textarea rows="10" class="c-input u-margin-top--xxs"></textarea>
+                    </label>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-radio-button">
+                        <label class="c-label">
+                            <input type="radio" class="c-radio-button-input" name="gender">
+                            <div class="c-radio-box u-margin-right--xxs"></div>
+                            Female
+                        </label>
                     </div>
-                    <div class="o-layout__item" style="width: calc(100% - 2rem);">
-                        <label class="c-label" for="checkbox">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Donec vel mi bibendum, hendrerit enim quis, convallis justo. 
-                            Nunc enim libero, scelerisque et consectetur tincidunt, 
-                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis, 
-                            eleifend non enim. Nulla ac aliquam sem, vel 
-                            faucibus tortor. Cras nec scelerisque metus. 
-                            Suspendisse potenti. Fusce porta interdum ligula a 
-                            vestibulum. Vestibulum elementum consectetur hendrerit. 
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-radio-button">
+                        <label class="c-label">
+                            <input type="radio" class="c-radio-button-input" name="gender">
+                            <div class="c-radio-box u-margin-right--xxs"></div>
+                            Male
+                        </label>
+                    </div>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-checkbox">
+                        <label class="c-label">
+                            <input type="checkbox" class="c-checkbox-input">
+                            <div class="c-checkbox-box u-margin-right--xxs"></div>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                            Nunc enim libero, scelerisque et consectetur tincidunt,
+                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                            eleifend non enim. Nulla ac aliquam sem, vel
+                            faucibus tortor. Cras nec scelerisque metus.
+                            Suspendisse potenti. Fusce porta interdum ligula a
+                            vestibulum. Vestibulum elementum consectetur hendrerit.
                             Mauris venenatis tempor nibh sit amet varius.
                         </label>
                     </div>
                 </div>
+                <div class="o-layout__item">
+                    <button class="c-button" type="submit">
+                        Send
+                    </button>
+                </div>
             </div>
-            <div class="o-layout-item">
-                <button class="c-button" type="submit">
-                    Send
-                </button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <div class="c-section c-section--brand-01">
+        <form class="o-main">
+            <div class="o-layout o-layout--spaced">
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        First Name
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        Last Name
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        E-mail
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--6">
+                    <label class="c-label">
+                        Phone
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--12">
+                    <label class="c-label">
+                        Subject
+                        <input class="c-input u-margin-top--xxs">
+                    </label>
+                </div>
+                <div class="o-layout__item o-layout__item--12">
+                    <label class="c-label">
+                        Question
+                        <textarea rows="10" class="c-input u-margin-top--xxs"></textarea>
+                    </label>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-radio-button">
+                        <label class="c-label">
+                            <input type="radio" class="c-radio-button-input" name="gender">
+                            <div class="c-radio-box u-margin-right--xxs"></div>
+                            Female
+                        </label>
+                    </div>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-radio-button">
+                        <label class="c-label">
+                            <input type="radio" class="c-radio-button-input" name="gender">
+                            <div class="c-radio-box u-margin-right--xxs"></div>
+                            Male
+                        </label>
+                    </div>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-checkbox">
+                        <label class="c-label">
+                            <input type="checkbox" class="c-checkbox-input">
+                            <div class="c-checkbox-box u-margin-right--xxs"></div>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                            Nunc enim libero, scelerisque et consectetur tincidunt,
+                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                            eleifend non enim. Nulla ac aliquam sem, vel
+                            faucibus tortor. Cras nec scelerisque metus.
+                            Suspendisse potenti. Fusce porta interdum ligula a
+                            vestibulum. Vestibulum elementum consectetur hendrerit.
+                            Mauris venenatis tempor nibh sit amet varius.
+                        </label>
+                    </div>
+                </div>
+                <div class="o-layout__item">
+                    <button class="c-button" type="submit">
+                        Send
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
