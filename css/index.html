@@ -28,7 +28,15 @@
             /* pixel sizes */
             --size-hair: 1px;
             font-size: 16px;
-            font-family: Arial, Helvetica, sans-serif;    
+            font-family: Arial, Helvetica, sans-serif;
+
+            /* components */
+            --c-section-background: var(--color-ui-02);
+            --c-label-01-color: var(--color-ui-05);
+            --c-label-02-color: var(--color-ui-06);
+            --c-button-color: var(--color-ui-01);
+            --c-button-background-color: var(--color-brand-01);
+            --c-button-border: var(--size-hair) solid var(--color-brand-01);
         }
 
         /* font awesome */
@@ -86,9 +94,9 @@
 
         /* components */
         .c-button {
-            color: var(--color-ui-01);
-            background-color: var(--color-brand-01);
-            border: var(--size-hair) solid var(--color-brand-01);
+            color: var(--c-button-color);
+            background-color: var(--c-button-background-color);
+            border: var(--c-button-border);
             border-radius: 4px;
             padding: 0.5em 1em;
             position: relative;
@@ -128,7 +136,7 @@
             font-weight: 600;
             font-size: 0.75rem;
             line-height: 1rem;
-            color: var(--color-ui-05);
+            color: var(--c-label-01-color);
         }
         .c-radio-button-input {
             display: none;
@@ -137,12 +145,17 @@
             display: none;
         }
         .c-section {
-            background-color: var(--color-ui-02);
+            background-color: var(--c-section-background);
         }
         .c-section--brand-01 {
-            --color-ui-02: var(--color-brand-01);
-            --color-ui-05: var(--color-ui-01);
-            --color-ui-06: var(--color-ui-01);
+            --c-label-01-color: var(--color-ui-01);
+            --c-label-02-color: var(--color-ui-01);
+            --c-section-background: var(--color-brand-01);
+            background-color: var(--c-section-background);
+
+            --c-button-color: var(--color-brand-01);
+            --c-button-background-color: var(--color-ui-01);
+            --c-button-border: var(--size-hair) solid var(--color-ui-01);
         }
         .c-radio-box {
             height: 1rem;
@@ -154,7 +167,8 @@
         }
         .c-checkbox-box {
             height: 1rem;
-            width: 1rem;
+            /* ??? */
+            width: 3.5rem;
             border-radius: 0.25rem;
             border: var(--size-hair) solid var(--color-ui-04);
             background-color: var(--color-ui-01);
@@ -163,34 +177,40 @@
         .c-radio-button .c-label {
             display: flex;
             font-size: 1rem;
-            color: var(--color-ui-06);
+            color: var(--c-label-02-color);
             font-weight: 600;
+            position: relative;
+            cursor: pointer;
         }
         .c-checkbox .c-label {
             display: flex;
             font-size: 1rem;
-            color: var(--color-ui-06);
+            color: var(--c-label-02-color);
             font-weight: 600;
+            position: relative;
+            cursor: pointer;
+            height: auto;
         }
 
         .c-label input:checked + .c-radio-box::before {
             content: "\f111";
             font-size: 0.5rem;
             font-family: "Font Awesome 5 Free";
-            position: relative;
-            left: 3px;
-            top: -3px;
+            position: absolute;
+            left: 0.25rem;
             color: var(--color-brand-01);
+            top: 0;
         }
 
         .c-label input:checked + .c-checkbox-box::before {
             content: "\2713";
-            font-size: 0.5rem;
+            font-size: 1rem;
+            width: 1rem;
+            height: 1rem;
             font-family: "Font Awesome 5 Free";
-            position: relative;
-            left: 3px;
-            top: -3px;
+            position: absolute;
             color: var(--color-brand-01);
+            top: 0;
         }
 
 
@@ -389,7 +409,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="o-layout__item">
+                <div class="o-layout__item o-layout__item--12">
                     <div class="c-checkbox">
                         <label class="c-label">
                             <input type="checkbox" class="c-checkbox-input">
@@ -406,7 +426,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="o-layout__item">
+                <div class="o-layout__item o-layout__item--12">
                     <button class="c-button" type="submit">
                         Send
                     </button>
