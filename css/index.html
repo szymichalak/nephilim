@@ -34,6 +34,7 @@
             --c-section-background: var(--color-ui-02);
             --c-label-01-color: var(--color-ui-05);
             --c-label-02-color: var(--color-ui-06);
+            --c-label-disabled: var(--color-ui-04);
             --c-button-color: var(--color-ui-01);
             --c-button-background-color: var(--color-brand-01);
             --c-button-border: var(--size-hair) solid var(--color-brand-01);
@@ -138,6 +139,10 @@
             line-height: 1rem;
             color: var(--c-label-01-color);
         }
+        .c-label-text {
+            font-weight: 400;
+            margin: 0;
+        }
         .c-radio-button-input {
             display: none;
         }
@@ -156,6 +161,7 @@
             --c-button-color: var(--color-brand-01);
             --c-button-background-color: var(--color-ui-01);
             --c-button-border: var(--size-hair) solid var(--color-ui-01);
+            --c-label-disabled: var(--color-ui-01);
         }
         .c-radio-box {
             height: 1rem;
@@ -211,6 +217,14 @@
             position: absolute;
             color: var(--color-brand-01);
             top: 0;
+        }
+
+        .c-label input:checked ~ .c-label-text {
+            font-weight: 600;
+        }
+
+        .c-label input:disabled ~ .c-label-text {
+            color: var(--c-label-disabled);
         }
 
 
@@ -396,7 +410,7 @@
                         <label class="c-label">
                             <input type="radio" class="c-radio-button-input" name="gender">
                             <div class="c-radio-box u-margin-right--xxs"></div>
-                            Female
+                            <p class="c-label-text">Female</p>
                         </label>
                     </div>
                 </div>
@@ -405,7 +419,7 @@
                         <label class="c-label">
                             <input type="radio" class="c-radio-button-input" name="gender">
                             <div class="c-radio-box u-margin-right--xxs"></div>
-                            Male
+                            <p class="c-label-text">Male</p>
                         </label>
                     </div>
                 </div>
@@ -414,15 +428,15 @@
                         <label class="c-label">
                             <input type="checkbox" class="c-checkbox-input">
                             <div class="c-checkbox-box u-margin-right--xxs"></div>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
-                            Nunc enim libero, scelerisque et consectetur tincidunt,
-                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
-                            eleifend non enim. Nulla ac aliquam sem, vel
-                            faucibus tortor. Cras nec scelerisque metus.
-                            Suspendisse potenti. Fusce porta interdum ligula a
-                            vestibulum. Vestibulum elementum consectetur hendrerit.
-                            Mauris venenatis tempor nibh sit amet varius.
+                            <p class="c-label-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                                Nunc enim libero, scelerisque et consectetur tincidunt,
+                                rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                                eleifend non enim. Nulla ac aliquam sem, vel
+                                faucibus tortor. Cras nec scelerisque metus.
+                                Suspendisse potenti. Fusce porta interdum ligula a
+                                vestibulum. Vestibulum elementum consectetur hendrerit.
+                                Mauris venenatis tempor nibh sit amet varius.</p>
                         </label>
                     </div>
                 </div>
@@ -481,7 +495,7 @@
                         <label class="c-label">
                             <input type="radio" class="c-radio-button-input" name="gender">
                             <div class="c-radio-box u-margin-right--xxs"></div>
-                            Female
+                            <p class="c-label-text">Female</p>
                         </label>
                     </div>
                 </div>
@@ -490,7 +504,7 @@
                         <label class="c-label">
                             <input type="radio" class="c-radio-button-input" name="gender">
                             <div class="c-radio-box u-margin-right--xxs"></div>
-                            Male
+                            <p class="c-label-text">Male</p>
                         </label>
                     </div>
                 </div>
@@ -499,15 +513,15 @@
                         <label class="c-label">
                             <input type="checkbox" class="c-checkbox-input">
                             <div class="c-checkbox-box u-margin-right--xxs"></div>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
-                            Nunc enim libero, scelerisque et consectetur tincidunt,
-                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
-                            eleifend non enim. Nulla ac aliquam sem, vel
-                            faucibus tortor. Cras nec scelerisque metus.
-                            Suspendisse potenti. Fusce porta interdum ligula a
-                            vestibulum. Vestibulum elementum consectetur hendrerit.
-                            Mauris venenatis tempor nibh sit amet varius.
+                            <p class="c-label-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                                Nunc enim libero, scelerisque et consectetur tincidunt,
+                                rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                                eleifend non enim. Nulla ac aliquam sem, vel
+                                faucibus tortor. Cras nec scelerisque metus.
+                                Suspendisse potenti. Fusce porta interdum ligula a
+                                vestibulum. Vestibulum elementum consectetur hendrerit.
+                                Mauris venenatis tempor nibh sit amet varius.</p>
                         </label>
                     </div>
                 </div>
