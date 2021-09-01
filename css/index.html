@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>CSS buttons</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <script defer src="imageViewer.js"></script>
     <style>
         body {
             margin: 0;
@@ -39,12 +39,16 @@
             --c-button_border: var(--size-hair) solid var(--color-brand-01);
             --c-radio-button__text_color: var(--color-ui-06);
             --c-checkbox__text_color: var(--color-ui-06);
+            --c-image-viewer_background-color: rgba(255,255,255,0.7);
         }
 
         /* font awesome */
         .fa {
             height: 1rem;
             width: 1rem;
+        }
+        .fa-spinner:before {
+            color: var(--color-brand-01);
         }
 
         /* objects */
@@ -227,6 +231,45 @@
         }
         .c-checkbox input:disabled ~ .c-checkbox__text {
             color: var(--c-label--disabled_color);
+        }
+
+        .c-image {
+            max-height: 250px;
+        }
+        .c-image:hover {
+            box-shadow: var(--elevation-shadow-02);
+            transform: translateY(-0.25rem);
+        }
+        .c-image-viewer {
+            border: none;
+            display: flex;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            width: auto;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-ui-01);
+            background-color: var(--c-image-viewer_background-color);
+            box-sizing: border-box;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .3s ease, visibility .3s ease;
+            flex-flow: column;
+        }
+        .c-image-viewer--not-loading > .c-image-viewer__loader {
+            display: none;
+        }
+        .c-image-viewer--loading > .c-image-viewer__loader {
+            display: block;
+        }
+        .c-image-viewer--loading > .c-image-viewer__footer {
+            display: none;
         }
 
         /* button actions */
@@ -515,5 +558,25 @@
             </div>
         </form>
     </div>
+
+    <div class="o-main u-margin-top--m">
+        <div class="o-layout o-layout--centered o-layout--spaced">
+            <div class="o-layout__item">
+                <img src="https://via.placeholder.com/250x500/FF0000/FFFFFF" alt="testImg" class="c-image js-image-viewer-trigger">
+            </div>
+            <div class="o-layout__item">
+                <img src="https://via.placeholder.com/250x500/00FF00/FFFFFF" alt="testImg" class="c-image js-image-viewer-trigger">
+            </div>
+            <div class="o-layout__item">
+                <img src="https://via.placeholder.com/250x500/0000FF/FFFFFF" alt="testImg" class="c-image js-image-viewer-trigger">
+            </div>
+        </div>
+    </div>
+
+    <dialog class="js-image-viewer c-image-viewer c-image-viewer--not-loading">
+        <span class="c-image-viewer__loader"><i class="fa fa-spinner fa-pulse"></i></span>
+        <img class="js-image-viewer__container c-image-viewer__image">
+        <div class="c-image-viewer__footer"><p class="c-label u-margin-top--m">kliknij żeby zamknąć</p></div>
+    </dialog>
 </body>
 </html>
