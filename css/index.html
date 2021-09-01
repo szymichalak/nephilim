@@ -25,19 +25,20 @@
             --elevation-shadow-01: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.3);
             --elevation-shadow-02: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
 
-            /* pixel sizes */
             --size-hair: 1px;
             font-size: 16px;
             font-family: Arial, Helvetica, sans-serif;
 
             /* components */
-            --c-section-background: var(--color-ui-02);
-            --c-label-01-color: var(--color-ui-05);
-            --c-label-02-color: var(--color-ui-06);
-            --c-label-disabled: var(--color-ui-04);
-            --c-button-color: var(--color-ui-01);
-            --c-button-background-color: var(--color-brand-01);
-            --c-button-border: var(--size-hair) solid var(--color-brand-01);
+            --c-section_background-color: var(--color-ui-02);
+            --c-label__01_color: var(--color-ui-05);
+            --c-label__02_color: var(--color-ui-06);
+            --c-label--disabled_color: var(--color-ui-04);
+            --c-button_color: var(--color-ui-01);
+            --c-button_background-color: var(--color-brand-01);
+            --c-button_border: var(--size-hair) solid var(--color-brand-01);
+            --c-radio-button__text_color: var(--color-ui-06);
+            --c-checkbox__text_color: var(--color-ui-06);
         }
 
         /* font awesome */
@@ -72,9 +73,6 @@
             justify-content: center;
             text-align: center;
         }
-        .o-layout__item--3 {
-            width: 25%;
-        }
         .o-layout__item--4 {
             width: 33.333%;
         }
@@ -95,20 +93,20 @@
 
         /* components */
         .c-button {
-            color: var(--c-button-color);
-            background-color: var(--c-button-background-color);
-            border: var(--c-button-border);
+            color: var(--c-button_color);
+            background-color: var(--c-button_background-color);
+            border: var(--c-button_border);
             border-radius: 4px;
             padding: 0.5em 1em;
             position: relative;
-            transition: 0.2s ease-in-out;
+            transition: box-shadow 0.2s ease-in-out;
         }
         .c-guideline {
             border: 0.1em dashed var(--color-guideline);
             border-style: none none dashed;
-            color: var(--color-ui-01);;
-            background-color: var(--color-ui-01);;
-            margin: calc(var(--size-hair) * (-1)) 0 0 0;
+            color: var(--color-ui-01);
+            background-color: var(--color-ui-01);
+            margin: 0;
         }
         .c-attention {
             position: absolute;
@@ -137,96 +135,99 @@
             font-weight: 600;
             font-size: 0.75rem;
             line-height: 1rem;
-            color: var(--c-label-01-color);
-        }
-        .c-label-text {
-            font-weight: 400;
-            margin: 0;
-        }
-        .c-radio-button-input {
-            display: none;
-        }
-        .c-checkbox-input {
-            display: none;
+            color: var(--c-label__01_color);
         }
         .c-section {
-            background-color: var(--c-section-background);
+            background-color: var(--c-section_background-color);
+            padding: 2rem;
         }
         .c-section--brand-01 {
-            --c-label-01-color: var(--color-ui-01);
-            --c-label-02-color: var(--color-ui-01);
-            --c-section-background: var(--color-brand-01);
-            background-color: var(--c-section-background);
+            --c-label__01_color: var(--color-ui-01);
+            --c-label__02_color: var(--color-ui-01);
+            --c-section_background-color: var(--color-brand-01);
+            background-color: var(--c-section_background-color);
 
-            --c-button-color: var(--color-brand-01);
-            --c-button-background-color: var(--color-ui-01);
-            --c-button-border: var(--size-hair) solid var(--color-ui-01);
-            --c-label-disabled: var(--color-ui-01);
+            --c-button_color: var(--color-brand-01);
+            --c-button_background-color: var(--color-ui-01);
+            --c-button_border: var(--size-hair) solid var(--color-ui-01);
+            --c-label--disabled_color: var(--color-ui-01);
+            --c-radio-button__text_color: var(--color-ui-01);
+            --c-checkbox__text_color: var(--color-ui-01)
         }
-        .c-radio-box {
+
+        .c-radio-button {
+            display: flex;
+            position: relative;
+        }
+        .c-radio-button__input {
+            display: none;
+        }
+        .c-radio-button__box {
             height: 1rem;
             width: 1rem;
             border: var(--size-hair) solid var(--color-ui-04);
             border-radius: 50%;
             box-sizing: border-box;
             background-color: var(--color-ui-01);
+            margin-right: 0.25rem;
         }
-        .c-checkbox-box {
+        .c-radio-button__text {
+            line-height: 1rem;
+            color: var(--c-radio-button__text_color);
+        }
+        .c-radio-button input:checked + .c-radio-button__box::before {
+            content: "\f111";
+            font-size: 0.5rem;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 600;
+            position: absolute;
+            left: 0.25rem;
+            color: var(--color-brand-01);
+            top: 0.25rem;
+        }
+        .c-radio-button input:checked ~ .c-radio-button__text {
+            font-weight: 600;
+        }
+        .c-radio-button input:disabled ~ .c-radio-button__text {
+            color: var(--c-label--disabled_color);
+        }
+
+        .c-checkbox {
+            display: flex;
+            position: relative;
+        }
+        .c-checkbox__input {
+            display: none;
+        }
+        .c-checkbox__box {
             height: 1rem;
-            /* ??? */
-            width: 3.5rem;
+            width: 1rem;
             border-radius: 0.25rem;
             border: var(--size-hair) solid var(--color-ui-04);
             background-color: var(--color-ui-01);
             box-sizing: border-box;
+            margin-right: 0.25rem;
         }
-        .c-radio-button .c-label {
-            display: flex;
-            font-size: 1rem;
-            color: var(--c-label-02-color);
-            font-weight: 600;
-            position: relative;
-            cursor: pointer;
+        .c-checkbox__text{
+            line-height: 1rem;
+            flex: 1;
+            text-align: justify;
+            color: var(--c-checkbox__text_color);
         }
-        .c-checkbox .c-label {
-            display: flex;
-            font-size: 1rem;
-            color: var(--c-label-02-color);
-            font-weight: 600;
-            position: relative;
-            cursor: pointer;
-            height: auto;
-        }
-
-        .c-label input:checked + .c-radio-box::before {
-            content: "\f111";
-            font-size: 0.5rem;
-            font-family: "Font Awesome 5 Free";
-            position: absolute;
-            left: 0.25rem;
-            color: var(--color-brand-01);
-            top: 0;
-        }
-
-        .c-label input:checked + .c-checkbox-box::before {
+        .c-checkbox input:checked + .c-checkbox__box::before {
             content: "\2713";
-            font-size: 1rem;
-            width: 1rem;
-            height: 1rem;
             font-family: "Font Awesome 5 Free";
+            font-weight: 600;
             position: absolute;
             color: var(--color-brand-01);
-            top: 0;
+            top: -0.25rem;
         }
-
-        .c-label input:checked ~ .c-label-text {
+        .c-checkbox input:checked ~ .c-checkbox__text {
             font-weight: 600;
         }
-
-        .c-label input:disabled ~ .c-label-text {
-            color: var(--c-label-disabled);
+        .c-checkbox input:disabled ~ .c-checkbox__text {
+            color: var(--c-label--disabled_color);
         }
-
 
         /* button actions */
         .c-button:hover{
@@ -272,9 +273,6 @@
         }
         .u-margin-top--m {
             margin-top: 1rem!important
-        }
-        .u-margin-right--xxs {
-            margin-right: 0.25rem!important
         }
     </style>
 </head>
@@ -364,81 +362,73 @@
         <hr class="c-guideline">
     </div>
 
-    <br>
-    <br>
     <div class="c-section">
         <form class="o-main">
             <div class="o-layout o-layout--spaced">
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         First Name
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="firstName">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         Last Name
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="lastName">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         E-mail
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" type="email" name="email">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         Phone
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" type="tel" name="phone">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
                     <label class="c-label">
                         Subject
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="subject">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
                     <label class="c-label">
                         Question
-                        <textarea rows="10" class="c-input u-margin-top--xxs"></textarea>
+                        <textarea rows="10" class="c-input u-margin-top--xxs" name="question"></textarea>
                     </label>
                 </div>
                 <div class="o-layout__item">
-                    <div class="c-radio-button">
-                        <label class="c-label">
-                            <input type="radio" class="c-radio-button-input" name="gender">
-                            <div class="c-radio-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Female</p>
-                        </label>
-                    </div>
+                    <label class="c-radio-button">
+                        <input type="radio" class="c-radio-button__input" name="gender" value="f">
+                        <span class="c-radio-button__box"></span>
+                        <span class="c-radio-button__text">Female</span>
+                    </label>
                 </div>
                 <div class="o-layout__item">
-                    <div class="c-radio-button">
-                        <label class="c-label">
-                            <input type="radio" class="c-radio-button-input" name="gender">
-                            <div class="c-radio-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Male</p>
-                        </label>
-                    </div>
+                    <label class="c-radio-button">
+                        <input type="radio" class="c-radio-button__input" name="gender" value="m">
+                        <span class="c-radio-button__box"></span>
+                        <span class="c-radio-button__text">Male</span>
+                    </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
-                    <div class="c-checkbox">
-                        <label class="c-label">
-                            <input type="checkbox" class="c-checkbox-input">
-                            <div class="c-checkbox-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec vel mi bibendum, hendrerit enim quis, convallis justo.
-                                Nunc enim libero, scelerisque et consectetur tincidunt,
-                                rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
-                                eleifend non enim. Nulla ac aliquam sem, vel
-                                faucibus tortor. Cras nec scelerisque metus.
-                                Suspendisse potenti. Fusce porta interdum ligula a
-                                vestibulum. Vestibulum elementum consectetur hendrerit.
-                                Mauris venenatis tempor nibh sit amet varius.</p>
-                        </label>
-                    </div>
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input" name="policy" value="true">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                            Nunc enim libero, scelerisque et consectetur tincidunt,
+                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                            eleifend non enim. Nulla ac aliquam sem, vel
+                            faucibus tortor. Cras nec scelerisque metus.
+                            Suspendisse potenti. Fusce porta interdum ligula a
+                            vestibulum. Vestibulum elementum consectetur hendrerit.
+                            Mauris venenatis tempor nibh sit amet varius.</span>
+                    </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
                     <button class="c-button" type="submit">
@@ -449,83 +439,75 @@
         </form>
     </div>
 
-    <br>
-    <br>
     <div class="c-section c-section--brand-01">
         <form class="o-main">
             <div class="o-layout o-layout--spaced">
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         First Name
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="firstName">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         Last Name
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="lastName">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         E-mail
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" type="email" name="email">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
                         Phone
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" type="tel" name="phone">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
                     <label class="c-label">
                         Subject
-                        <input class="c-input u-margin-top--xxs">
+                        <input class="c-input u-margin-top--xxs" name="subject">
                     </label>
                 </div>
                 <div class="o-layout__item o-layout__item--12">
                     <label class="c-label">
                         Question
-                        <textarea rows="10" class="c-input u-margin-top--xxs"></textarea>
+                        <textarea rows="10" class="c-input u-margin-top--xxs" name="question"></textarea>
                     </label>
                 </div>
                 <div class="o-layout__item">
-                    <div class="c-radio-button">
-                        <label class="c-label">
-                            <input type="radio" class="c-radio-button-input" name="gender">
-                            <div class="c-radio-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Female</p>
-                        </label>
-                    </div>
+                    <label class="c-radio-button">
+                        <input type="radio" class="c-radio-button__input" name="gender" value="f">
+                        <span class="c-radio-button__box"></span>
+                        <span class="c-radio-button__text">Female</span>
+                    </label>
                 </div>
                 <div class="o-layout__item">
-                    <div class="c-radio-button">
-                        <label class="c-label">
-                            <input type="radio" class="c-radio-button-input" name="gender">
-                            <div class="c-radio-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Male</p>
-                        </label>
-                    </div>
+                    <label class="c-radio-button">
+                        <input type="radio" class="c-radio-button__input" name="gender" value="m">
+                        <span class="c-radio-button__box"></span>
+                        <span class="c-radio-button__text">Male</span>
+                    </label>
                 </div>
-                <div class="o-layout__item">
-                    <div class="c-checkbox">
-                        <label class="c-label">
-                            <input type="checkbox" class="c-checkbox-input">
-                            <div class="c-checkbox-box u-margin-right--xxs"></div>
-                            <p class="c-label-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Donec vel mi bibendum, hendrerit enim quis, convallis justo.
-                                Nunc enim libero, scelerisque et consectetur tincidunt,
-                                rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
-                                eleifend non enim. Nulla ac aliquam sem, vel
-                                faucibus tortor. Cras nec scelerisque metus.
-                                Suspendisse potenti. Fusce porta interdum ligula a
-                                vestibulum. Vestibulum elementum consectetur hendrerit.
-                                Mauris venenatis tempor nibh sit amet varius.</p>
-                        </label>
-                    </div>
+                <div class="o-layout__item o-layout__item--12">
+                    <label class="c-checkbox">
+                        <input type="checkbox" class="c-checkbox__input" name="policy" value="true">
+                        <span class="c-checkbox__box"></span>
+                        <span class="c-checkbox__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Donec vel mi bibendum, hendrerit enim quis, convallis justo.
+                            Nunc enim libero, scelerisque et consectetur tincidunt,
+                            rutrum vitae nunc. Nam ante neque, luctus quis aliquet quis,
+                            eleifend non enim. Nulla ac aliquam sem, vel
+                            faucibus tortor. Cras nec scelerisque metus.
+                            Suspendisse potenti. Fusce porta interdum ligula a
+                            vestibulum. Vestibulum elementum consectetur hendrerit.
+                            Mauris venenatis tempor nibh sit amet varius.</span>
+                    </label>
                 </div>
-                <div class="o-layout__item">
+                <div class="o-layout__item o-layout__item--12">
                     <button class="c-button" type="submit">
                         Send
                     </button>
