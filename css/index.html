@@ -20,6 +20,7 @@
             --color-ui-05: #666666;
             --color-ui-06: #333333;
             --color-alert-01: #C50000;
+            --color-alert-02: #00C500;
 
             /* elevations */
             --elevation-shadow-01: 0rem 0.125rem 0.125rem rgba(0, 0, 0, 0.3);
@@ -40,6 +41,10 @@
             --c-radio-button__text_color: var(--color-ui-06);
             --c-checkbox__text_color: var(--color-ui-06);
             --c-image-viewer_background-color: rgba(255,255,255,0.7);
+            --c-notification--success_color: var(--color-ui-01);
+            --c-notification--success_background-color: var(--color-alert-02);
+            --c-notification--error_color: var(--color-ui-01);
+            --c-notification--error_background-color: var(--color-alert-01);
         }
 
         /* font awesome */
@@ -89,6 +94,7 @@
         .o-layout__item {
             display: inline-block;
             box-sizing: border-box;
+            position: relative;
         }
         .o-layout--spaced>.o-layout__item {
             box-sizing: border-box;
@@ -104,6 +110,7 @@
             padding: 0.5em 1em;
             position: relative;
             transition: box-shadow 0.2s ease-in-out;
+            font-size: 1rem;
         }
         .c-guideline {
             border: 0.1em dashed var(--color-guideline);
@@ -272,6 +279,29 @@
             display: none;
         }
 
+        .c-notification {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 1.3s ease, visibility 1.3s ease;
+            border-radius: 4px;
+            padding: 0.5em 1em;
+            position: absolute;
+        }
+        .c-notification--success {
+            background-color: var(--c-notification--success_background-color);
+            color: var(--c-notification--success_color);
+            border: var(--size-hair) solid var(--c-notification--success_background-color);
+        }
+        .c-notification--error {
+            background-color: var(--c-notification--error_background-color);
+            color: var(--c-notification--error_color);
+            border: var(--size-hair) solid var(--c-notification--error_background-color);
+        }
+        .c-notification__message {
+            margin: 0;
+            width: max-content;
+        }
+
         /* button actions */
         .c-button:hover{
             box-shadow: var(--elevation-shadow-02);
@@ -405,8 +435,8 @@
         <hr class="c-guideline">
     </div>
 
-    <div class="c-section">
-        <form class="o-main">
+    <div class="o-main">
+        <form class="c-section" action="http://127.0.0.1:5000/form" method="POST">
             <div class="o-layout o-layout--spaced">
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
@@ -473,17 +503,23 @@
                             Mauris venenatis tempor nibh sit amet varius.</span>
                     </label>
                 </div>
-                <div class="o-layout__item o-layout__item--12">
+                <div class="o-layout__item">
                     <button class="c-button" type="submit">
                         Send
                     </button>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-notification c-notification--success">
+                        <p class="c-notification__message">Dane zostały wysłane poprawnie</p>
+                    </div>
+                    <div class="c-notification c-notification--error">
+                        <p class="c-notification__message">Wystapił błąd w trakcie wysyłania formularza</p>
+                    </div>
                 </div>
             </div>
         </form>
-    </div>
 
-    <div class="c-section c-section--brand-01">
-        <form class="o-main">
+        <form class="c-section c-section--brand-01" action="http://127.0.0.1:5000/form" method="POST">
             <div class="o-layout o-layout--spaced">
                 <div class="o-layout__item o-layout__item--6">
                     <label class="c-label">
@@ -550,10 +586,18 @@
                             Mauris venenatis tempor nibh sit amet varius.</span>
                     </label>
                 </div>
-                <div class="o-layout__item o-layout__item--12">
+                <div class="o-layout__item">
                     <button class="c-button" type="submit">
                         Send
                     </button>
+                </div>
+                <div class="o-layout__item">
+                    <div class="c-notification c-notification--success">
+                        <p class="c-notification__message">Dane zostały wysłane poprawnie</p>
+                    </div>
+                    <div class="c-notification c-notification--error">
+                        <p class="c-notification__message">Wystapił błąd w trakcie wysyłania formularza</p>
+                    </div>
                 </div>
             </div>
         </form>
