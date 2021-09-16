@@ -1,0 +1,25 @@
+<div class="o-main">
+    <div class="o-layout o-layout--spaced">
+        <div class="o-layout o-layout__item o-layout__item--8">
+            <p class="rich-text--align-center">
+                <img src="{{productData.mainImage.sourceUrl}}" alt="main-image">
+            </p>
+        </div>
+        <div class="o-layout o-layout__item o-layout__item--4">
+            <div class="c-product-details">
+                <p class="c-product-details__header">{{productData.name}}</p>
+                <p class="c-product-details__model">Model: {{productData.model}}</p>
+                <p class="c-product-details__price">
+                    Cena: <strong>{{productData.priceGross}} PLN </strong>
+                    <s *ngIf="productData.priceGrossBeforeDiscount>0">{{productData.priceGrossBeforeDiscount}} PLN</s>
+                </p>
+            </div>
+        </div>
+        <div class="o-layout o-layout__item">
+            <p [innerHTML]="productData.content"></p>
+        </div>
+        <div class="o-layout o-layout__item">
+            <p [innerHTML]="productData.description"></p>
+        </div>
+    </div>
+</div>

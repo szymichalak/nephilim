@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.o-main {
+    width: 64rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem
+}
+.o-layout {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.o-layout--spaced {
+    margin: -.5rem;
+    width: auto;
+    max-width: none
+}
+.o-layout--centered {
+    justify-content: center;
+    text-align: center;
+}
+.o-layout__item {
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+}
+.o-layout--spaced>.o-layout__item {
+    box-sizing: border-box;
+    padding: .5rem;
+}
+
+.o-layout__item--4 {
+    width: 33.333%;
+}
+.o-layout__item--6 {
+    width: 50%;
+}
+.o-layout__item--8 {
+    width: 66.666%;
+}
+.o-layout__item--12 {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .o-layout__item--4 {
+        width: 100%;
+    }
+    .o-layout__item--6 {
+        width: 100%;
+    }
+    .o-layout__item--8 {
+        width: 100%;
+    }
+    .o-layout__item--12 {
+        width: 100%;
+    }
+}
+
+.u-margin-top--m {
+    margin-top: 1rem!important
+}
