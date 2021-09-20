@@ -1,7 +1,13 @@
 <div class="o-main">
-    <div class="o-layout o-layout--centered">
+    <div class="o-layout o-layout--centered o-layout--spaced">
         <div class="o-layout__item">
-            <button mat-raised-button (click)="navigateToProductsList()">Wszystkie produkty</button>
+            <button mat-raised-button [routerLink]="'/product'">Wszystkie produkty</button>
+        </div>
+        <div class="o-layout__item" *ngIf="!isLoggedIn()">
+            <button mat-raised-button [routerLink]="'/auth/login'">Zaloguj</button>
+        </div>
+        <div class="o-layout__item" *ngIf="isLoggedIn()">
+            <button mat-raised-button (click)="logout()">Wyloguj</button>
         </div>
     </div>
 </div>

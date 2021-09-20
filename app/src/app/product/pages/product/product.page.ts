@@ -1,20 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from "@angular/router";
-import {ProductDetailsModel} from "@app/product/models/product-details.model";
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {ProductDetailsDto} from "@app/product/dtos/product-details";
+import {getProductDetails} from "@app/product/selectors/data";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
     templateUrl: 'product.page.html'
 })
-export class ProductPage implements OnInit {
+export class ProductPage {
+    public readonly productDetails: Observable<ProductDetailsDto> = this._activatedRoute.data.pipe(
+        map(getProductDetails)
+    );
 
-    constructor(private _activatedRoute: ActivatedRoute) { }
-
-    public productData: ProductDetailsModel = new ProductDetailsModel();
-
-    public ngOnInit(): void {
-        this._activatedRoute.data.subscribe((data: Data) => {
-            this.productData = data['data'];
-        });
-    }
-
+    constructor(private readonly _activatedRoute: ActivatedRoute) { }
 }

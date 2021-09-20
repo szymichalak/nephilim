@@ -1,1 +1,3 @@
-<app-product-details [productData]="productData"></app-product-details>
+<ng-container *ngIf="productDetails | async as productDetails">
+    <app-product-details [productData]="productDetails"></app-product-details>
+</ng-container>

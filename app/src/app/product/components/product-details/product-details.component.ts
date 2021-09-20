@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {ProductDetailsModel} from "@app/product/models/product-details.model";
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {ProductDetailsDto} from "@app/product/dtos/product-details";
 
 @Component({
     selector: 'app-product-details',
@@ -7,12 +7,7 @@ import {ProductDetailsModel} from "@app/product/models/product-details.model";
     styleUrls: ['./product-details.component.css'],
     encapsulation: ViewEncapsulation.None,
 })
-export class ProductDetailComponent implements OnInit {
-
-    @Input() public productData: ProductDetailsModel = new ProductDetailsModel();
-
-
-    public ngOnInit(): void {
-        console.log(this.productData);
-    }
+export class ProductDetailComponent {
+    @Input()
+    public productData: ProductDetailsDto;
 }

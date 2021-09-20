@@ -1,0 +1,57 @@
+import {CommonModule} from "@angular/common";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {NgModule, Type} from "@angular/core";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from "@angular/material/input";
+import {RouterModule, Routes} from "@angular/router";
+import {LoginFormComponent} from "@app/auth/components/login-form/login-form.component";
+import {AuthInterceptor} from "@app/auth/interceptors/auth.interceptor";
+import {LoginPage} from "@app/auth/pages/login/login.page";
+import {AuthService} from "@app/auth/services/auth.service";
+import {ProtocolsModule} from "@app/protocols/protocols.module";
+
+const components: Type<any>[] = [
+    LoginFormComponent
+];
+
+const pages: Type<any>[] = [
+    LoginPage
+];
+
+const services: Type<any>[] = [
+    AuthService
+];
+
+const routes: Routes = [
+    {
+        path: 'auth/login',
+        component: LoginPage
+    }
+];
+
+@NgModule({
+    declarations: [...components, ...pages],
+    providers: [
+        ...services,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        }
+    ],
+    exports: [],
+    imports: [
+        RouterModule.forChild(routes),
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatInputModule,
+        CommonModule,
+        ProtocolsModule
+    ]
+})
+
+export class AuthModule { }

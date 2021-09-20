@@ -1,22 +1,20 @@
-import {NgModule, Type} from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ApiService} from "@app/product/providers/api.service";
-import {ProductDetailsResolver} from "@app/product/providers/product-details.resolver";
-import { AppComponent } from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthModule} from "@app/auth/auth.module";
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('./product/product.module').then((m) => m.ProductModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule)
   }
-];
-
-const providers: Type<any>[] = [
-  ProductDetailsResolver
 ];
 
 @NgModule({
@@ -27,7 +25,8 @@ const providers: Type<any>[] = [
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
