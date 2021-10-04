@@ -1,6 +1,6 @@
 import {CommonModule} from "@angular/common";
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
-import {NgModule, Type} from "@angular/core";
+import {ModuleWithProviders, NgModule, Provider, Type} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
@@ -11,6 +11,8 @@ import {AuthInterceptor} from "@app/auth/interceptors/auth.interceptor";
 import {LoginPage} from "@app/auth/pages/login/login.page";
 import {AuthService} from "@app/auth/services/auth.service";
 import {ProtocolsModule} from "@app/protocols/protocols.module";
+import {LoggedInGuard} from "@app/auth/guards/logged-in.guard";
+import {LoggedOutGuard} from "@app/auth/guards/logged-out.guard";
 
 const components: Type<any>[] = [
     LoginFormComponent
@@ -24,6 +26,19 @@ const services: Type<any>[] = [
     AuthService
 ];
 
+const guards: Type<any>[] = [
+    LoggedInGuard,
+    LoggedOutGuard
+];
+
+const interceptors: Provider[] = [
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true,
+    }
+];
+
 const routes: Routes = [
     {
         path: 'auth/login',
@@ -33,14 +48,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [...components, ...pages],
-    providers: [
-        ...services,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        }
-    ],
+    providers: [],
     exports: [],
     imports: [
         RouterModule.forChild(routes),
@@ -54,4 +62,11 @@ const routes: Routes = [
     ]
 })
 
-export class AuthModule { }
+export class AuthModule {
+    public static forRoot(): ModuleWithProviders<AuthModule> {
+        return {
+            ngModule: AuthModule,
+            providers: [...services, ...guards, ...interceptors]
+        }
+    }
+}

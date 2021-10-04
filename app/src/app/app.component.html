@@ -3,12 +3,14 @@
         <div class="o-layout__item">
             <button mat-raised-button [routerLink]="'/product'">Wszystkie produkty</button>
         </div>
-        <div class="o-layout__item" *ngIf="!isLoggedIn()">
-            <button mat-raised-button [routerLink]="'/auth/login'">Zaloguj</button>
-        </div>
-        <div class="o-layout__item" *ngIf="isLoggedIn()">
+        <div class="o-layout__item" *ngIf="isLoggedIn | async; else notLoggedIn">
             <button mat-raised-button (click)="logout()">Wyloguj</button>
         </div>
+        <ng-template #notLoggedIn>
+            <div class="o-layout__item">
+                <button mat-raised-button [routerLink]="'/auth/login'">Zaloguj</button>
+            </div>
+        </ng-template>
     </div>
 </div>
 <router-outlet></router-outlet>

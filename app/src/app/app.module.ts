@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterModule, Routes} from '@angular/router';
 import {AuthModule} from "@app/auth/auth.module";
 import {AppComponent} from './app.component';
+import {SharedModule} from "@app/shared/shared.module";
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatButtonModule,
-    AuthModule
+    AuthModule.forRoot(),
+    SharedModule.forRoot(window, window.localStorage)
   ],
   providers: [],
   bootstrap: [AppComponent]
