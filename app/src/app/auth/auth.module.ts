@@ -1,5 +1,5 @@
 import {CommonModule} from "@angular/common";
-import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {ModuleWithProviders, NgModule, Provider, Type} from "@angular/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
@@ -7,12 +7,12 @@ import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {RouterModule, Routes} from "@angular/router";
 import {LoginFormComponent} from "@app/auth/components/login-form/login-form.component";
+import {LoggedInGuard} from "@app/auth/guards/logged-in.guard";
+import {LoggedOutGuard} from "@app/auth/guards/logged-out.guard";
 import {AuthInterceptor} from "@app/auth/interceptors/auth.interceptor";
 import {LoginPage} from "@app/auth/pages/login/login.page";
 import {AuthService} from "@app/auth/services/auth.service";
 import {ProtocolsModule} from "@app/protocols/protocols.module";
-import {LoggedInGuard} from "@app/auth/guards/logged-in.guard";
-import {LoggedOutGuard} from "@app/auth/guards/logged-out.guard";
 
 const components: Type<any>[] = [
     LoginFormComponent
@@ -52,7 +52,6 @@ const routes: Routes = [
     exports: [],
     imports: [
         RouterModule.forChild(routes),
-        HttpClientModule,
         ReactiveFormsModule,
         MatButtonModule,
         MatCardModule,
@@ -67,6 +66,6 @@ export class AuthModule {
         return {
             ngModule: AuthModule,
             providers: [...services, ...guards, ...interceptors]
-        }
+        };
     }
 }

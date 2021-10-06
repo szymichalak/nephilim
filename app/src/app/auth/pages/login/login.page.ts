@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
-import {AuthService} from "@app/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoginFormGroup} from "@app/auth/model/form-groups/login.form-group";
+import {AuthService} from "@app/auth/services/auth.service";
 import {read} from "@app/shared/model/observable/read";
 
 @Component({
@@ -22,11 +22,5 @@ export class LoginPage {
         } catch (error) {
 
         }
-
-        this._autService.login(this.form.login.value, this.form.password.value).subscribe(async () => {
-            await this._router.navigate(['/user'])
-        }, (error) => {
-            // handle error
-        });
     }
 }

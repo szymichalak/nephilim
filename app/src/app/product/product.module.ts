@@ -1,5 +1,4 @@
 import {CommonModule} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
 import {NgModule, Type} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule, Routes} from '@angular/router';
@@ -51,7 +50,6 @@ const routes: Routes = [
     exports: [],
     imports: [
         RouterModule.forChild(routes),
-        HttpClientModule,
         MatButtonModule,
         CommonModule,
         AuthModule,
