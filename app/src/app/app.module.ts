@@ -1,4 +1,4 @@
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {APP_INITIALIZER, NgModule, Provider} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserModule} from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthModule} from "@app/auth/auth.module";
 import {AuthService} from "@app/auth/services/auth.service";
 import {initializeApp} from "@app/initializeApp";
+import {ProtocolsModule} from "@app/protocols/protocols.module";
 import {SharedModule} from "@app/shared/shared.module";
 import {AppComponent} from './app.component';
 
@@ -40,6 +41,7 @@ const providers: Provider = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    ProtocolsModule,
     AuthModule.forRoot(),
     SharedModule.forRoot(window, window.localStorage)
   ],

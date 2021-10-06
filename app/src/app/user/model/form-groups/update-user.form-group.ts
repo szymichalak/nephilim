@@ -1,6 +1,8 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UpdateUserDto} from "@app/user/dtos/UpdateUserDto";
 import {checkPasswordValidator} from "@app/user/model/validators/check-password.validator";
+import {BehaviorSubject} from "rxjs";
+import {filter} from "rxjs/operators";
 
 export class UpdateUserFormGroup extends FormGroup {
     public readonly firstName: FormControl = new FormControl('', Validators.required);
@@ -13,6 +15,9 @@ export class UpdateUserFormGroup extends FormGroup {
     public readonly newPassword: FormControl = new FormControl('');
     public readonly newPasswordConfirm: FormControl = new FormControl('');
     public readonly currentPassword: FormControl = new FormControl('', Validators.required);
+
+    public readonly newPasswordChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
+    public readonly newPasswordConfirmChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
     constructor() {
         super({});
@@ -33,6 +38,16 @@ export class UpdateUserFormGroup extends FormGroup {
 
         this.newPassword.disable();
         this.newPasswordConfirm.disable();
+
+        this.newPassword.valueChanges.pipe(
+            filter(v => v !== this.newPasswordChanged.value)
+        ).subscribe(change => { this.newPasswordChanged.next(change); });
+        this.newPasswordChanged.subscribe(_ => { this.newPasswordConfirm.updateValueAndValidity(); });
+
+        this.newPasswordConfirm.valueChanges.pipe(
+            filter(v => v !== this.newPasswordConfirmChanged.value)
+        ).subscribe(change => { this.newPasswordConfirmChanged.next(change); });
+        this.newPasswordConfirmChanged.subscribe(_ => { this.newPassword.updateValueAndValidity(); });
     }
 
     public toUpdateUserDto(): UpdateUserDto {

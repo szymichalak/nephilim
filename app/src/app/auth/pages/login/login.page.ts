@@ -16,11 +16,22 @@ export class LoginPage {
     ) { }
 
     public async onSubmitted(): Promise<void> {
+        this.disableFormControls();
         try {
             await read(this._autService.login(this.form.login.value, this.form.password.value));
             await this._router.navigate(['/user']);
         } catch (error) {
 
+        } finally {
+            this.enableFormControls();
         }
+    }
+
+    private disableFormControls(): void {
+        this.form.disable();
+    }
+
+    private enableFormControls(): void {
+        this.form.enable();
     }
 }

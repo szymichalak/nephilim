@@ -7,8 +7,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {RouterModule, Routes} from "@angular/router";
-import {AuthModule} from "@app/auth/auth.module";
-import {ProtocolsModule} from "@app/protocols/protocols.module";
 import {UpdateUserComponent} from "@app/user/components/update-user/update-user.component";
 import {UserDetailsPage} from "@app/user/pages/user-details/user-details.page";
 import {UserService} from "@app/user/services/user.service";
@@ -44,8 +42,7 @@ const routes: Routes = [
         MatInputModule,
         MatCheckboxModule,
         MatButtonModule,
-        MatIconModule,
-        ProtocolsModule
+        MatIconModule
     ]
 })
 

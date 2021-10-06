@@ -12,7 +12,6 @@ import {LoggedOutGuard} from "@app/auth/guards/logged-out.guard";
 import {AuthInterceptor} from "@app/auth/interceptors/auth.interceptor";
 import {LoginPage} from "@app/auth/pages/login/login.page";
 import {AuthService} from "@app/auth/services/auth.service";
-import {ProtocolsModule} from "@app/protocols/protocols.module";
 
 const components: Type<any>[] = [
     LoginFormComponent
@@ -56,8 +55,7 @@ const routes: Routes = [
         MatButtonModule,
         MatCardModule,
         MatInputModule,
-        CommonModule,
-        ProtocolsModule
+        CommonModule
     ]
 })
 

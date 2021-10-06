@@ -15,7 +15,9 @@
                     <input matInput type="password" [formControl]="control.password">
                 </mat-form-field>
 
-                <button mat-raised-button color="primary">Zaloguj</button>
+                <button mat-raised-button color="primary" [disabled]="control.disabled"
+                        [innerText]="control.enabled ? 'Zaloguj' : 'Logowanie...'">
+                </button>
             </form>
         </mat-card-content>
     </mat-card>
