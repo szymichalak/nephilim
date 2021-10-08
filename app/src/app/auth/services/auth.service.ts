@@ -22,7 +22,7 @@ export class AuthService implements OnDestroy {
         map(authToken => authToken?.user ?? null)
     );
     public readonly isLoggedIn: Observable<boolean> = this._authToken.pipe(
-        map(authToken => authToken !== null)
+        map(authToken => authToken != null)
     );
 
     private readonly _subscriptions: Subscription[];

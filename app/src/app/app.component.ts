@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {UserDto} from "@app/auth/dtos/user.dto";
 import {AuthService} from "@app/auth/services/auth.service";
 import {Observable} from "rxjs";
 
@@ -10,6 +11,7 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
     public readonly isLoggedIn: Observable<boolean> = this._authService.isLoggedIn;
+    public readonly currentUser: Observable<UserDto | null> = this._authService.currentUser;
 
     constructor(private readonly _authService: AuthService, private readonly _router: Router) { }
 
