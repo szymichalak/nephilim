@@ -57,7 +57,7 @@
                 </mat-form-field>
 
                 <div class="o-layout__item o-layout__item--12">
-                    <mat-checkbox [formControl]="control.changePassword" (change)="onChangePasswordChanged($event)">Zmienić hasło</mat-checkbox>
+                    <mat-checkbox [formControl]="control.changePassword" (change)="control.onChangePasswordChanged($event)">Zmienić hasło</mat-checkbox>
                 </div>
 
                 <mat-form-field appearance="fill" class="o-layout__item o-layout__item--6">

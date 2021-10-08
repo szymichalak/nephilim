@@ -1,4 +1,5 @@
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 import {UpdateUserDto} from "@app/user/dtos/UpdateUserDto";
 import {checkPasswordValidator} from "@app/user/model/validators/check-password.validator";
 import {BehaviorSubject} from "rxjs";
@@ -62,5 +63,43 @@ export class UpdateUserFormGroup extends FormGroup {
             newPassword: this.newPassword.value,
             currentPassword: this.currentPassword.value,
         };
+    }
+
+    public enableFormControls(): void {
+        this.enable();
+        if (!this.changePassword) {
+            this.addControl("newPassword", this.newPassword);
+            this.addControl("newPasswordConfirm", this.newPasswordConfirm);
+        }
+    }
+
+    public disableFormControls(): void {
+        if (!this.changePassword) {
+            this.removeControl("newPassword");
+            this.removeControl("newPasswordConfirm");
+        }
+        this.disable();
+    }
+
+    public onChangePasswordChanged(event: MatCheckboxChange): void {
+        if (event.checked) {
+            this.newPassword.addValidators(Validators.required);
+            this.newPasswordConfirm.addValidators(Validators.required);
+            this.newPassword.enable();
+            this.newPasswordConfirm.enable();
+        } else {
+            this.newPassword.removeValidators(Validators.required);
+            this.newPasswordConfirm.removeValidators(Validators.required);
+            this.newPassword.reset();
+            this.newPasswordConfirm.reset();
+            this.newPassword.setValue('');
+            this.newPasswordConfirm.setValue('');
+            this.newPassword.markAsUntouched();
+            this.newPasswordConfirm.markAsUntouched();
+            this.newPassword.markAsPristine();
+            this.newPasswordConfirm.markAsPristine();
+            this.newPassword.disable();
+            this.newPasswordConfirm.disable();
+        }
     }
 }

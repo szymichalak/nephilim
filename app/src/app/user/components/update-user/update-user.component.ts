@@ -1,6 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {Validators} from "@angular/forms";
-import {MatCheckboxChange} from "@angular/material/checkbox";
 import {UserDto} from "@app/auth/dtos/user.dto";
 import {UpdateUserFormGroup} from "@app/user/model/form-groups/update-user.form-group";
 
@@ -30,27 +28,5 @@ export class UpdateUserComponent implements OnInit {
 
     public getRequiredError(): string {
         return "To pole jest wymagane";
-    }
-
-    public onChangePasswordChanged(event: MatCheckboxChange): void {
-        if (event.checked) {
-            this.control.newPassword.addValidators(Validators.required);
-            this.control.newPasswordConfirm.addValidators(Validators.required);
-            this.control.newPassword.enable();
-            this.control.newPasswordConfirm.enable();
-        } else {
-            this.control.newPassword.removeValidators(Validators.required);
-            this.control.newPasswordConfirm.removeValidators(Validators.required);
-            this.control.newPassword.reset();
-            this.control.newPasswordConfirm.reset();
-            this.control.newPassword.setValue('');
-            this.control.newPasswordConfirm.setValue('');
-            this.control.newPassword.markAsUntouched();
-            this.control.newPasswordConfirm.markAsUntouched();
-            this.control.newPassword.markAsPristine();
-            this.control.newPasswordConfirm.markAsPristine();
-            this.control.newPassword.disable();
-            this.control.newPasswordConfirm.disable();
-        }
     }
 }

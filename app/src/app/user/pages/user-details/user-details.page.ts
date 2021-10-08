@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {UserDto} from "@app/auth/dtos/user.dto";
 import {AuthService} from "@app/auth/services/auth.service";
+import {NotificationsService} from "@app/notifications/services/notifications.service";
 import {read} from "@app/shared/model/observable/read";
 import {UpdateUserFormGroup} from "@app/user/model/form-groups/update-user.form-group";
 import {UserService} from "@app/user/services/user.service";
@@ -13,7 +14,11 @@ export class UserDetailsPage {
     public readonly form: UpdateUserFormGroup = new UpdateUserFormGroup();
     public readonly currentUser: Observable<UserDto | null> = this._authService.currentUser;
 
-    constructor(private readonly _authService: AuthService, private readonly _userService: UserService) {}
+    constructor(
+        private readonly _authService: AuthService,
+        private readonly _userService: UserService,
+        private readonly _notificationsService: NotificationsService
+    ) {}
 
     public async onSubmitted(): Promise<void> {
         try {
@@ -21,30 +26,15 @@ export class UserDetailsPage {
                 return;
             }
 
-            this.disableFormControls();
+            this.form.disableFormControls();
             await read(this._userService.updateUser(this.form.toUpdateUserDto()));
+            this._notificationsService.showSuccessNotification('Użytkownik został zaktualizowany');
         } catch (error) {
-
+            this._notificationsService.showErrorNotification('Wystąpił błąd w trakcie aktualizacji danych');
         } finally {
-            this.enableFormControls();
+            this.form.enableFormControls();
         }
 
-    }
-
-    private disableFormControls(): void {
-        if (!this.form.changePassword) {
-            this.form.removeControl("newPassword");
-            this.form.removeControl("newPasswordConfirm");
-        }
-        this.form.disable();
-    }
-
-    private enableFormControls(): void {
-        this.form.enable();
-        if (!this.form.changePassword) {
-            this.form.addControl("newPassword", this.form.newPassword);
-            this.form.addControl("newPasswordConfirm", this.form.newPasswordConfirm);
-        }
     }
 
 }

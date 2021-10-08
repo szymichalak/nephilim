@@ -3,6 +3,18 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+:root {
+    /* colors */
+    --color-ui-01: #FFFFFF;
+    --color-ui-02: #EFEFEF;
+    --color-ui-03: #CCCCCC;
+    --color-ui-04: #999999;
+    --color-ui-05: #666666;
+    --color-ui-06: #333333;
+    --color-alert-01: #C50000;
+    --color-alert-02: #00C500;
+}
+
 .o-main {
     width: 64rem;
     max-width: 100%;
@@ -68,4 +80,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .u-margin-top--m {
     margin-top: 1rem!important
+}
+
+/* notifications module */
+.c-notification--success {
+    background-color: var(--color-alert-02);
+    color: var(--color-ui-01);
+}
+.c-notification--error {
+    background-color: var(--color-alert-01);
+    color: var(--color-ui-01);
 }

@@ -9,4 +9,12 @@ export class LoginFormGroup extends  FormGroup {
         this.addControl('login', this.login);
         this.addControl('password', this.password);
     }
+
+    public disableFormControls(): void {
+        this.disable();
+    }
+
+    public enableFormControls(): void {
+        this.enable();
+    }
 }

@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthModule} from "@app/auth/auth.module";
 import {AuthService} from "@app/auth/services/auth.service";
 import {initializeApp} from "@app/initializeApp";
+import {NotificationsModule} from "@app/notifications/notifications.module";
 import {ProtocolsModule} from "@app/protocols/protocols.module";
 import {SharedModule} from "@app/shared/shared.module";
 import {AppComponent} from './app.component';
@@ -43,7 +44,8 @@ const providers: Provider = [
     MatButtonModule,
     ProtocolsModule,
     AuthModule.forRoot(),
-    SharedModule.forRoot(window, window.localStorage)
+    SharedModule.forRoot(window, window.localStorage),
+    NotificationsModule
   ],
   providers: [...providers],
   bootstrap: [AppComponent]
