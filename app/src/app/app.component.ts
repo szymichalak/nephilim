@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "@app/auth/services/auth.service";
-import {read} from "@app/shared/model/observable/read";
 import {Observable} from "rxjs";
 
 @Component({
@@ -15,7 +14,7 @@ export class AppComponent {
     constructor(private readonly _authService: AuthService, private readonly _router: Router) { }
 
     public async logout(): Promise<void> {
-        await this._authService.logout()
+        await this._authService.logout();
         await this._router.navigate(['/auth/login']);
     }
 }

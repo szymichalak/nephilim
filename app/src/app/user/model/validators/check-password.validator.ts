@@ -7,7 +7,7 @@ export function checkPasswordValidator(password: FormControl): ValidatorFn {
         }
         const confirm: string = control.value;
         if (password.value !== confirm) {
-            return { 'confirm': false };
+            return { 'unmatched': "Podane hasła nie są zgodne" };
         }
         return null;
     };

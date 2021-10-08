@@ -8,37 +8,52 @@
                 <mat-form-field appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Imię</mat-label>
                     <input matInput [formControl]="control.firstName" required>
-                    <mat-error *ngIf="control.firstName.invalid">{{getRequiredError()}}</mat-error>
+                    <mat-error *ngIf="control.firstName.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field  appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Nazwisko</mat-label>
                     <input matInput [formControl]="control.lastName" required>
-                    <mat-error *ngIf="control.lastName.invalid">{{getRequiredError()}}</mat-error>
+                    <mat-error *ngIf="control.lastName.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field  appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Adres</mat-label>
                     <input matInput [formControl]="control.address" required>
-                    <mat-error *ngIf="control.address.invalid">{{getRequiredError()}}</mat-error>
+                    <mat-error *ngIf="control.address.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field  appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Kod pocztowy</mat-label>
-                    <input matInput [formControl]="control.postalCode" required>
-                    <mat-error *ngIf="control.postalCode.invalid">{{getPostalCodeError()}}</mat-error>
+                    <input matInput [formControl]="control.postalCode" required [maxLength]="6">
+                    <mat-error *ngIf="control.postalCode.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
+                    <mat-error *ngIf="control.postalCode.hasError('pattern')">
+                        {{getPostalCodeError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field  appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Miasto</mat-label>
                     <input matInput [formControl]="control.city" required>
-                    <mat-error *ngIf="control.city.invalid">{{getRequiredError()}}</mat-error>
+                    <mat-error *ngIf="control.city.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field  appearance="fill" class="o-layout__item o-layout__item--12">
                     <mat-label>Telefon kontaktowy</mat-label>
                     <input matInput [formControl]="control.phone" type="tel" required>
-                    <mat-error *ngIf="control.phone.invalid">{{getRequiredError()}}</mat-error>
+                    <mat-error *ngIf="control.phone.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <div class="o-layout__item o-layout__item--12">
@@ -48,13 +63,23 @@
                 <mat-form-field appearance="fill" class="o-layout__item o-layout__item--6">
                     <mat-label>Nowe hasło</mat-label>
                     <input matInput type="password" [formControl]="control.newPassword" [required]="control.changePassword.value">
-                    <mat-error *ngIf="control.newPassword.invalid">{{getPasswordNotConfirmedError()}}</mat-error>
+                    <mat-error *ngIf="control.newPassword.hasError('unmatched')">
+                        {{control.newPassword.getError('unmatched')}}
+                    </mat-error>
+                    <mat-error *ngIf="control.newPassword.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" class="o-layout__item o-layout__item--6">
                     <mat-label>Powtórz hasło</mat-label>
                     <input matInput type="password" [formControl]="control.newPasswordConfirm" [required]="control.changePassword.value">
-                    <mat-error *ngIf="control.newPasswordConfirm.invalid">{{getPasswordNotConfirmedError()}}</mat-error>
+                    <mat-error *ngIf="control.newPasswordConfirm.hasError('unmatched')">
+                        {{control.newPasswordConfirm.getError('unmatched')}}
+                    </mat-error>
+                    <mat-error *ngIf="control.newPasswordConfirm.hasError('required')">
+                        {{getRequiredError()}}
+                    </mat-error>
                 </mat-form-field>
 
                 <div class="o-layout__item o-layout__item--12">
@@ -62,7 +87,9 @@
                     <mat-form-field appearance="fill" [style.width]="'100%'">
                         <mat-label>Aktualne hasło</mat-label>
                         <input matInput type="password" [formControl]="control.currentPassword" required>
-                        <mat-error *ngIf="control.currentPassword.invalid">{{getRequiredError()}}</mat-error>
+                        <mat-error *ngIf="control.currentPassword.hasError('required')">
+                            {{getRequiredError()}}
+                        </mat-error>
                     </mat-form-field>
                 </div>
 

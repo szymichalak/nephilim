@@ -25,15 +25,11 @@ export class UpdateUserComponent implements OnInit {
     }
 
     public getPostalCodeError(): string {
-        return "Niepoprawny format kodu pocztowego";
+        return "Niepoprawny format kodu pocztowego. Wymagany format: 12-345";
     }
 
     public getRequiredError(): string {
         return "To pole jest wymagane";
-    }
-
-    public getPasswordNotConfirmedError(): string {
-        return "Hasła nie są zgodne";
     }
 
     public onChangePasswordChanged(event: MatCheckboxChange): void {
